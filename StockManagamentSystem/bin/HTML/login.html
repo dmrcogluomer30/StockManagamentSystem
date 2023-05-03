@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stok Takip Programı | Giriş by ÖMER FARUK DEMİRCİOĞLU</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <style>
+
+	::-webkit-scrollbar {
+		height: 12px;
+		width: 12px;
+		background: #332D2D;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #3B71CA;
+		-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+	}
+
+	::-webkit-scrollbar-corner {
+		background: #332D2D;
+	}
+
+</style>
+</head>
+<body class="hold-transition login-page dark-mode">
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="" class="h1"><b>Stok Takip</b></a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg" style="text-align: center">
+		<div id="alertmsg" class="alert alert-primary" role="alert">
+		  	  Giriş yapmak için kullanıcı adı/mail ve şifrenizi girin.</p>
+		</div>
+      <div>
+        <div class="input-group mb-3">
+          <input id="username" type="text" class="form-control" placeholder="Kullanıcı adı veya Mail adresi">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input id="password" type="password" class="form-control" placeholder="Şifre">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-md-12">
+            <button id="loginButton" onclick="loginUser();" type="submit" class="btn btn-primary btn-block"><i class="fab fa-lock mr-2"></i>Giriş yap</button>
+			<button onclick="appClose();" type="submit" class="btn btn-danger btn-block"><i class="fab fa-lock mr-2"></i>Uygulamayı kapat</button>
+          </div>
+          <!-- /.col -->
+        </div>
+		<div class="row">
+          <!-- /.col -->
+          <div class="col-md-12" style="text-align: center;">
+            <small>STOK TAKİP PROGRAMI <b>ÖMER FARUK DEMİRCİOĞLU</b> TARAFINDAN TASARLANMIŞTIR.</small>
+          </div>
+          <!-- /.col -->
+        </div>
+		<div class="row">
+          <!-- /.col -->
+          <div class="col-md-12" style="text-align: center;">
+            <small>v1.0 Stable</small>
+          </div>
+          <!-- /.col -->
+        </div>
+      </div>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+
+<script>
+
+document.addEventListener("keyup", function(event) {
+	if(event.keyCode === 13) loginUser();
+});
+
+
+function loginUser() {
+ var apiJson = [];
+ apiJson.push({
+	name: "login",
+	username: $("#username").val(),
+	password: $("#password").val()
+  });
+ CefSharp.PostMessage(JSON.stringify(apiJson[0]));
+}
+
+function appClose() {
+	CefSharp.PostMessage("APP_CLOSE");
+}
+
+</script>
+</body>
+</html>
